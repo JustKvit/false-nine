@@ -1,0 +1,629 @@
+/* Общие переменные для стилей */
+:root {
+    --primary-color: #003087; /* Тёмно-синий из логотипа */
+    --accent-color: #FF6200; /* Оранжевый для CTA */
+    --text-color: #3B4070; /* Цвет текста */
+    --bg-color: #f8f8f8; /* Фон страницы */
+    --header-bg: #003087; /* Тёмно-синий фон header */
+    --border-radius: 8px; /* Скругление углов */
+    --shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Тень */
+    --transition: all 0.3s ease; /* Плавные анимации */
+}
+
+/* Базовые стили страницы */
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-color);
+    margin: 0;
+    line-height: 1.6;
+    background-color: var(--bg-color);
+    scroll-behavior: smooth;
+}
+
+/* Заголовки */
+h1, h2 {
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+h1 { font-size: 2.8rem; }
+h2 { font-size: 2.2rem; }
+
+/* Кнопки */
+.btn {
+    background: linear-gradient(90deg, var(--primary-color), #0055D1, var(--primary-color)); /* Переливание */
+    background-size: 200% 100%;
+    color: #fff;
+    padding: 0.8rem 1.8rem;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    display: inline-block;
+    transition: var(--transition);
+    animation: shimmer 3s infinite;
+}
+
+.btn:hover {
+    background-position: 100% 0;
+    transform: translateY(-3px);
+}
+
+.btn-cta {
+    background: linear-gradient(90deg, var(--accent-color), #FFA500, var(--accent-color));
+    background-size: 200% 100%;
+}
+
+.btn-cta:hover {
+    background-position: 100% 0;
+}
+
+/* Эффект переливания */
+@keyframes shimmer {
+    0% { background-position: 0% 0; }
+    100% { background-position: 200% 0; }
+}
+
+/* Якоря для точной прокрутки */
+.anchor {
+    scroll-margin-top: 80px;
+}
+
+/* Header: Фиксированная шапка */
+.header {
+    background: var(--header-bg);
+    color: #fff;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    height: 60px;
+    box-shadow: var(--shadow);
+}
+
+/* Десктопная версия header */
+.header__content._desktop {
+    padding: 0.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+/* Мобильная версия header */
+.header__content._mobile {
+    display: none;
+    padding: 0.5rem 1rem;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+/* Логотип */
+.hLogo img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.hLogo img:hover {
+    transform: scale(1.1);
+}
+
+/* Навигация */
+.navigation {
+    display: flex;
+    gap: 1.2rem;
+}
+
+.navigation__item {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: var(--transition);
+}
+
+.navigation__item:hover {
+    color: var(--accent-color);
+}
+
+/* Социальные иконки */
+.hSocials {
+    display: flex;
+    gap: 0.8rem;
+}
+
+.hSocials__icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.hSocials__icon svg {
+    width: 22px;
+    height: 22px;
+    fill: #fff;
+    transition: var(--transition);
+}
+
+.hSocials__icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), #0055D1, var(--primary-color));
+    background-size: 200% 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    animation: shimmer 3s infinite;
+}
+
+.hSocials__icon:hover svg {
+    fill: var(--accent-color);
+    transform: rotate(10deg);
+}
+
+.hSocials__icon:hover::before {
+    opacity: 0.3;
+}
+
+/* Бургер-меню */
+.hBurger {
+    display: none;
+}
+
+.burger {
+    cursor: pointer;
+}
+
+.burger__line {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: #fff;
+    margin: 4px 0;
+    transition: var(--transition);
+}
+
+.burger.active .burger__line:nth-child(1) {
+    transform: rotate(45deg) translate(4px, 4px);
+}
+
+.burger.active .burger__line:nth-child(2) {
+    opacity: 0;
+}
+
+.burger.active .burger__line:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+.header__menu._mobile {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--header-bg);
+    padding: 1rem;
+    box-shadow: var(--shadow);
+}
+
+.header__menu._mobile .navigation {
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+/* Главный баннер */
+.mainSlider {
+    position: relative;
+    height: 90vh;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+}
+
+.mainSlider__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.swiper-slide {
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.mainSlider__container {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: #fff;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.mainSlider__title {
+    font-size: 3rem;
+    font-weight: 700;
+    animation: fadeIn 1s ease-in;
+}
+
+.mainSlider__buttons .btn {
+    margin-top: 1.5rem;
+}
+
+/* Анимация для заголовков */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Общий контейнер для секций */
+.block {
+    padding: 5rem 0;
+}
+
+.block__content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* Секция "О нас" */
+.cPageTitle h1 {
+    font-size: 2.8rem;
+    animation: fadeIn 1s ease-in;
+}
+
+.cImageText .tb-grid {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.cImageText img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.cImageText img:hover {
+    transform: scale(1.02);
+}
+
+.text_vertical_center {
+    text-align: left;
+}
+
+/* Секция преимуществ */
+.cAdvantages .advantageCollection {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+}
+
+.advantage {
+    text-align: center;
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.advantage:hover {
+    transform: translateY(-5px);
+}
+
+.advantage__icon img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.advantage__text {
+    font-weight: 600;
+    margin-top: 1rem;
+}
+
+/* Секция тренировок */
+.cWriteToUs .writeToUs_contentCenter {
+    text-align: center;
+}
+
+.cWriteToUs .text {
+    max-width: 800px;
+    margin: 0 auto 2rem;
+}
+
+/* Секция стадионов */
+.cPhotoGallery .linearSlider {
+    position: relative;
+}
+
+.linearSlider__image {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.linear_arrows {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+    color: var(--accent-color);
+}
+
+/* Секция тренеров */
+.cCoaches .coaches {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+}
+
+.coach {
+    text-align: center;
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.coach:hover {
+    transform: translateY(-5px);
+}
+
+.coach img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.coach h3 {
+    margin: 0.8rem 0;
+}
+
+/* Секция абонементов */
+.cPrices .prices {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.prices__item {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.plan__image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.prices__table {
+    width: 60%;
+    border-collapse: collapse;
+}
+
+.prices__table td {
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+}
+
+.price__actual {
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+/* Секция расписания */
+.cSpSchedule .schedule {
+    text-align: center;
+}
+
+.cSpSchedule .btn {
+    margin-top: 1rem;
+}
+
+/* Секция новостей */
+.cNews .news-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.news-item {
+    max-width: 320px;
+    text-align: center;
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.news-item:hover {
+    transform: translateY(-5px);
+}
+
+.news-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+}
+
+/* Секция галереи */
+.cGallery .gallery-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.gallery-item {
+    max-width: 320px;
+}
+
+.gallery-item img,
+.gallery-item video {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+/* Секция контактов */
+.cText .text {
+    text-align: center;
+}
+
+/* Секция карты */
+.cCustomScript .customScript__script {
+    text-align: center;
+}
+
+/* Footer */
+.footer {
+    background-color: var(--header-bg);
+    color: #fff;
+    padding: 3rem 0;
+}
+
+.footer__content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5rem;
+}
+
+.footer .navigation__item {
+    color: #fff;
+}
+
+.footer .navigation__item:hover {
+    color: var(--accent-color);
+}
+
+.footer .hSocials__icon svg {
+    fill: #fff;
+}
+
+.footer .hSocials__icon:hover svg {
+    fill: var(--accent-color);
+}
+
+.footer .hSocials__icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), #0055D1, var(--primary-color));
+    background-size: 200% 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    animation: shimmer 3s infinite;
+}
+
+.footer .hSocials__icon:hover::before {
+    opacity: 0.3;
+}
+
+.copyright {
+    font-size: 0.9rem;
+    margin-top: 1.5rem;
+    width: 100%;
+    text-align: center;
+}
+
+/* Адаптивные стили */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .mainSlider__title {
+        font-size: 2.5rem;
+    }
+    .cImageText .tb-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .header__content._desktop {
+        display: none;
+    }
+    .header__content._mobile {
+        display: flex;
+    }
+    .hBurger {
+        display: block;
+    }
+    .header__menu._mobile.active {
+        display: block;
+    }
+    .mainSlider {
+        height: 70vh;
+    }
+    .mainSlider__title {
+        font-size: 1.8rem;
+    }
+    .cImageText .tb-grid {
+        flex-direction: column;
+    }
+    .cAdvantages .advantageCollection {
+        flex-direction: column;
+        align-items: center;
+    }
+    .cCoaches .coaches {
+        flex-direction: column;
+    }
+    .coach img {
+        width: 150px;
+        height: 150px;
+    }
+    .prices__item {
+        flex-direction: column;
+    }
+    .prices__table {
+        width: 100%;
+    }
+    .cNews .news-container {
+        flex-direction: column;
+    }
+    .cGallery .gallery-container {
+        flex-direction: column;
+    }
+}
